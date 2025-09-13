@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MessageCircle, ArrowLeft } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import VideoPlayer from "@/components/VideoPlayer";
 import ChatPanel from "@/components/ChatPanel";
@@ -7,6 +8,13 @@ import { Button } from "@/components/ui/button";
 
 const Lesson = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const handleBackToCourse = () => {
+    // Navega para a trilha do curso correspondente
+    navigate(`/curso/${id}`);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -17,7 +25,7 @@ const Lesson = () => {
         variant="ghost"
         size="icon"
         className="fixed top-4 left-4 z-50 bg-background/80 backdrop-blur-sm border border-border hover:bg-background/90"
-        onClick={() => window.history.back()}
+        onClick={handleBackToCourse}
       >
         <ArrowLeft className="h-5 w-5" />
       </Button>
