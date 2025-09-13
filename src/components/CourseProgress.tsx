@@ -38,7 +38,7 @@ const CourseProgress = () => {
         Continuar de onde parei
       </h2>
       
-      <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto">
+      <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto">
         {coursesInProgress.map((course) => (
           <Card 
             key={course.id} 

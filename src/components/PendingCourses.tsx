@@ -61,7 +61,7 @@ const PendingCourses = () => {
         Trilhas pendentes
       </h2>
       
-      <div className="grid grid-cols-3 gap-3 max-w-lg mx-auto">
+      <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto">
         {pendingCourses.map((course) => (
           <Card 
             key={course.id} 
@@ -70,9 +70,9 @@ const PendingCourses = () => {
           >
             <CardContent className="p-0">
               {/* Course Cover Image */}
-              <div className="h-20 bg-gradient-to-br from-muted/50 via-secondary to-muted relative overflow-hidden">
+              <div className="h-24 bg-gradient-to-br from-muted/50 via-secondary to-muted relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
-                <div className="absolute top-1 left-1">
+                <div className="absolute top-2 left-2">
                   <Badge
                     variant={course.type === "mandatory" ? "destructive" : "secondary"}
                     className={`text-xs shadow-sm ${
@@ -84,16 +84,16 @@ const PendingCourses = () => {
                     {course.type === "mandatory" ? "Obrig." : "Livre"}
                   </Badge>
                 </div>
-                <div className="absolute bottom-1 right-1">
+                <div className="absolute bottom-2 right-2">
                   <div className="w-6 h-6 bg-white/80 rounded-full flex items-center justify-center">
                     <Clock className="h-3 w-3 text-muted-foreground" />
                   </div>
                 </div>
               </div>
               
-              <div className="p-2">
+              <div className="p-3">
                 {/* Course Title */}
-                <h3 className="font-medium text-foreground mb-2 text-xs text-center min-h-[2rem] flex items-center justify-center leading-tight">
+                <h3 className="font-medium text-foreground mb-3 text-xs text-center min-h-[2.5rem] flex items-center justify-center leading-tight">
                   {course.title}
                 </h3>
                 

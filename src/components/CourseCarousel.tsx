@@ -56,27 +56,27 @@ const CourseCarousel = () => {
         Trilhas livres
       </h2>
       
-      <div className="flex gap-4 overflow-x-auto pb-4 scroll-smooth">
+      <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto">
         {freeCourses.map((course) => (
           <Card
             key={course.id}
-            className="flex-shrink-0 w-72 card-hover bg-gradient-to-br from-card to-secondary mx-auto cursor-pointer transition-transform hover:scale-105"
+            className="card-hover w-full cursor-pointer transition-transform hover:scale-105"
             onClick={() => handleCourseClick(course)}
           >
             <CardContent className="p-0">
               {/* Course Cover Image */}
-              <div className="h-40 bg-gradient-to-br from-primary/20 via-accent/10 to-primary-dark/15 rounded-t-lg relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="w-12 h-12 bg-white/90 rounded-lg flex items-center justify-center shadow-lg">
-                    <Clock className="h-6 w-6 text-primary" />
+              <div className="h-24 bg-gradient-to-br from-primary/15 via-accent/5 to-primary-dark/10 rounded-t-lg relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                <div className="absolute bottom-2 left-2">
+                  <div className="w-8 h-8 bg-white/90 rounded-lg flex items-center justify-center shadow-lg">
+                    <Clock className="h-4 w-4 text-primary" />
                   </div>
                 </div>
               </div>
               
               {/* Course Info */}
-              <div className="p-4 text-center">
-                <h3 className="font-semibold text-foreground text-sm mb-4 line-clamp-2 leading-tight min-h-[2.5rem]">
+              <div className="p-3">
+                <h3 className="font-medium text-foreground text-xs mb-3 line-clamp-2 leading-tight min-h-[2.5rem] text-center">
                   {course.title}
                 </h3>
                 
@@ -94,18 +94,6 @@ const CourseCarousel = () => {
               </div>
             </CardContent>
           </Card>
-        ))}
-      </div>
-      
-      {/* Scroll indicator dots */}
-      <div className="flex justify-center gap-2 mt-6">
-        {freeCourses.map((_, index) => (
-          <div
-            key={index}
-            className={`h-2 w-2 rounded-full transition-all duration-300 ${
-              index === 0 ? "bg-primary w-6" : "bg-muted"
-            }`}
-          />
         ))}
       </div>
 
