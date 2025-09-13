@@ -12,11 +12,11 @@ const Lesson = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Back Arrow - Top Right */}
+      {/* Back Arrow - Top Left */}
       <Button
         variant="ghost"
         size="icon"
-        className="fixed top-4 right-4 z-50 bg-background/80 backdrop-blur-sm border border-border hover:bg-background/90"
+        className="fixed top-4 left-4 z-50 bg-background/80 backdrop-blur-sm border border-border hover:bg-background/90"
         onClick={() => window.history.back()}
       >
         <ArrowLeft className="h-5 w-5" />
