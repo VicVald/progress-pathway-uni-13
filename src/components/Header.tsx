@@ -1,15 +1,9 @@
-import { Menu, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Header = () => {
   return (
     <header className="flex items-center justify-between p-4 bg-background border-b border-border">
-      {/* Hamburger Menu */}
-      <Button variant="ghost" size="icon" className="text-foreground">
-        <Menu className="h-6 w-6" />
-      </Button>
-
       {/* Platform Logo */}
       <div className="flex items-center">
         <h1 className="text-2xl font-bold text-primary">
