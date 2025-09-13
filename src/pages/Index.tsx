@@ -9,9 +9,9 @@ const Index = () => {
       <Header />
       
       <main className="pb-6">
-        <CourseCarousel />
-        <CourseProgress />
         <PendingCourses />
+        <CourseProgress />
+        <CourseCarousel />
       </main>
     </div>
   );

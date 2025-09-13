@@ -1,10 +1,12 @@
 import { Calendar, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import CourseModal from "./CourseModal";
 
 interface Course {
   id: string;
   title: string;
+  description: string;
   hours: number;
   availableDate: string;
   image?: string;
@@ -14,25 +16,39 @@ const freeCourses: Course[] = [
   {
     id: "1",
     title: "Ferramentas de Inteligência Artificial no trabalho",
+    description: "Aprenda a utilizar ferramentas de IA para otimizar suas tarefas diárias e aumentar sua produtividade no ambiente de trabalho.",
     hours: 20,
     availableDate: "05/10/2025",
   },
   {
     id: "2", 
     title: "Metodologias Ágeis para Gestão de Projetos",
+    description: "Domine os fundamentos das metodologias ágeis como Scrum e Kanban para gerenciar projetos de forma mais eficiente.",
     hours: 15,
     availableDate: "12/10/2025",
   },
   {
     id: "3",
     title: "Comunicação Assertiva e Liderança",
+    description: "Desenvolva habilidades de comunicação e liderança para melhorar suas relações profissionais e alcançar melhores resultados.",
     hours: 18,
     availableDate: "20/10/2025",
   },
 ];
 
 const CourseCarousel = () => {
-  const navigate = useNavigate();
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCourseClick = (course: Course) => {
+    setSelectedCourse(course);
+    setIsModalOpen(true);
+  };
+
+  const handleStartCourse = () => {
+    // Navigate to course page
+    window.location.href = `/curso/${selectedCourse?.id}`;
+  };
 
   return (
     <section className="px-4 py-6">
@@ -45,7 +61,7 @@ const CourseCarousel = () => {
           <Card
             key={course.id}
             className="flex-shrink-0 w-72 card-hover bg-gradient-to-br from-card to-secondary mx-auto cursor-pointer transition-transform hover:scale-105"
-            onClick={() => navigate(`/curso/${course.id}`)}
+            onClick={() => handleCourseClick(course)}
           >
             <CardContent className="p-0">
               {/* Course Cover Image */}
@@ -92,6 +108,16 @@ const CourseCarousel = () => {
           />
         ))}
       </div>
+
+      {/* Course Modal */}
+      {selectedCourse && (
+        <CourseModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          course={selectedCourse}
+          onStartCourse={handleStartCourse}
+        />
+      )}
     </section>
   );
 };

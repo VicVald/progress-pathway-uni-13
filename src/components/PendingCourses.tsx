@@ -2,12 +2,15 @@ import { Calendar, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import CourseModal from "./CourseModal";
 
 interface PendingCourse {
   id: string;
   title: string;
+  description: string;
   type: "mandatory" | "free";
+  hours: number;
   deadline: string;
 }
 
@@ -15,25 +18,42 @@ const pendingCourses: PendingCourse[] = [
   {
     id: "1",
     title: "Normas de saúde e segurança no trabalho",
-    type: "mandatory", 
+    description: "Curso obrigatório sobre as principais normas de segurança e saúde ocupacional para um ambiente de trabalho seguro.",
+    type: "mandatory",
+    hours: 8,
     deadline: "20/10/2025",
   },
   {
     id: "2",
     title: "Sustentabilidade e Responsabilidade Social",
+    description: "Aprenda sobre práticas sustentáveis e responsabilidade social corporativa para um futuro mais consciente.",
     type: "mandatory",
+    hours: 12,
     deadline: "25/10/2025",
   },
   {
     id: "3",
     title: "Gestão de Tempo e Produtividade",
+    description: "Técnicas e ferramentas para otimizar seu tempo e aumentar sua produtividade no trabalho e na vida pessoal.",
     type: "free",
+    hours: 10,
     deadline: "30/11/2025",
   },
 ];
 
 const PendingCourses = () => {
-  const navigate = useNavigate();
+  const [selectedCourse, setSelectedCourse] = useState<PendingCourse | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCourseClick = (course: PendingCourse) => {
+    setSelectedCourse(course);
+    setIsModalOpen(true);
+  };
+
+  const handleStartCourse = () => {
+    // Navigate to course page
+    window.location.href = `/curso/${selectedCourse?.id}`;
+  };
 
   return (
     <section className="px-4 py-6">
@@ -46,7 +66,7 @@ const PendingCourses = () => {
           <Card 
             key={course.id} 
             className="card-hover w-full cursor-pointer transition-transform hover:scale-105"
-            onClick={() => navigate(`/curso/${course.id}`)}
+            onClick={() => handleCourseClick(course)}
           >
             <CardContent className="p-0">
               {/* Course Cover Image */}
@@ -101,6 +121,16 @@ const PendingCourses = () => {
           </Card>
         ))}
       </div>
+
+      {/* Course Modal */}
+      {selectedCourse && (
+        <CourseModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          course={selectedCourse}
+          onStartCourse={handleStartCourse}
+        />
+      )}
     </section>
   );
 };
